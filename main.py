@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 
+from routes import blog_get
 from db import models
 from db.database import engine
 
 blog = FastAPI()
+
+blog.include_router(blog_get.router)
 
 #create database with our Engine
 models.Base.metadata.create_all(engine)
