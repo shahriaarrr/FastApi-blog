@@ -15,4 +15,5 @@ def create_article(db: Session, request: ArticleBase):
 
     return article
 
-
+def get_article(id, db: Session):
+    return db.query(DBArticle).filter(DBArticle.id == id).first()
