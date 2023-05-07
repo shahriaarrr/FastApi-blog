@@ -2,9 +2,12 @@ from sqlalchemy.orm.session import Session
 from schemas import UserBase
 from db.models import DBUser
 from db.hash import Hash
+from exceptions import EmailNotValid
 
 
 def create_user(db: Session, request: UserBase):
+    if "@" not in request.email:
+        raise EmailNotValid("your Email not Valid!!")
     user = DBUser(
         username=request.username,
         email=request.email,
