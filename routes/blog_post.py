@@ -26,20 +26,20 @@ def create_blog(blog: BlogModel, id: int, version: int = 1):
 
 
 @router.post('/new/{id}/comment/{comment_id}')
-def create_comment(id: int, blog:BlogModel,
-                    comment_title:int = Query(None,
-                        title='Title Text !',
-                        description='Description text',
-                        alias='CommentTitle',
-                        deprecated=True
-                    ),
-                    content:str = Body(..., min_length=10,
+def create_comment(id: int, blog: BlogModel,
+                   comment_title: int = Query(None,
+                                              title='Title Text !',
+                                              description='Description text',
+                                              alias='CommentTitle',
+                                              deprecated=True
+                                              ),
+                   content: str = Body(..., min_length=10,
                                        max_length=20,
                                        regex='^[A-Z].*'
-                    ),
-                    v: Optional[List[str]] = Query(None),
+                                       ),
+                   v: Optional[List[str]] = Query(None),
                    comment_id: int = Path(None, gt=5)
-                ):
+                   ):
     return {
         'blog': blog,
         'id': id,
@@ -48,3 +48,4 @@ def create_comment(id: int, blog:BlogModel,
         'version': v,
         'comment_id': comment_id,
     }
+
