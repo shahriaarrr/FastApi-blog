@@ -3,6 +3,7 @@ from fastapi.requests import Request
 from fastapi.responses import JSONResponse
 
 from routes import blog_get, blog_post, user, article
+from auth import authentication
 from db import models
 from db.database import engine
 from exceptions import EmailNotValid
@@ -13,6 +14,7 @@ blog.include_router(blog_get.router)
 blog.include_router(blog_post.router)
 blog.include_router(user.router)
 blog.include_router(article.router)
+blog.include_router(authentication.router)
 
 # create database with our Engine
 models.Base.metadata.create_all(engine)
