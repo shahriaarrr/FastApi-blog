@@ -28,6 +28,11 @@ def get_user(id, db: Session):
     return user
 
 
+def get_user_username(username, db: Session):
+    user = db.query(DBUser).filter(DBUser.username == username).first()
+    return user
+
+
 def delete_user(id, db: Session):
     user = get_user(id, db)
     db.delete(user)
